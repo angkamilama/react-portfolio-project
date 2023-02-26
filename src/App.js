@@ -1,12 +1,13 @@
 import Header from './components/Header';
-import Main from './components/Main';
-// import Footer from './components/Footer';
+import Introduction  from './components/Inroduction';
+import JavascriptProject from './components/JavascriptProject';
 
 function App() {
   return (
     <div>                 
       <Header/>
-      <Main/>
+      <Introduction/>
+      <JavascriptProject/>
     </div>
   );
 }

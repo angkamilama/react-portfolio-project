@@ -46,13 +46,6 @@ import React from 'react';
      ];
 
     const [index, setIndex] = useState(0);
-
-    const displayProject = () => {  
-        const openProject = document.querySelector('.project-box');
-        openProject.innerHTML = `<h2 class="project-title">${projects[index].name}</h2>
-        <p class="project-description">${projects[index].description}</p>
-        <p>project number ${index + 1} of ${projects.length}</p>` 
-      };
     
     const showNextProject = (nextIndex) => {    
         if (nextIndex <= 0) {
@@ -61,12 +54,8 @@ import React from 'react';
           setIndex(0);
       } else {
           setIndex(nextIndex);
-      }
-        displayProject();     
+      } 
     };
-
-
-  
 
     return (
         <div>
@@ -75,23 +64,20 @@ import React from 'react';
                 <h1></h1>
                 <section className="project">
                     <div className="btn-box">
-                        <button className="btn-prev" onClick={(e) => {
-                            e.preventDefault();
+                        <button className="btn-prev" onClick={() => {
                             showNextProject(index - 1);
                         }} >
                             <FaArrowLeft className="fa-solid fa-arrow-left"/>
                         </button>
                     </div>
-                    <div className="project-box" onClick={() => {
-                        displayProject();
-                        setIndex(index + 1);
-                    }}>
-                        <p>Click here for to open projects!!!</p>
+                    <div className="project-box">
+                        <h2 class="project-title">{projects[index].name}</h2>
+                        <p class="project-description">{projects[index].description}</p>
+                        <p>project number {index + 1} of {projects.length}</p>  
                     </div>
                     <div className="btn-box">
-                        <button className="btn-next" onClick={(e) => {
+                        <button className="btn-next" onClick={() => {
                             console.log(index);
-                            e.preventDefault();
                             showNextProject(index + 1);
                             
                         }

@@ -71,13 +71,12 @@ import React from 'react';
                         </button>
                     </div>
                     <div className="project-box">
-                        <h2 class="project-title">{projects[index].name}</h2>
-                        <p class="project-description">{projects[index].description}</p>
+                        <h2 className="project-title">{projects[index].name}</h2>
+                        <p className="project-description">{projects[index].description}</p>
                         <p>project number {index + 1} of {projects.length}</p>  
                     </div>
                     <div className="btn-box">
                         <button className="btn-next" onClick={() => {
-                            console.log(index);
                             showNextProject(index + 1);
                             
                         }

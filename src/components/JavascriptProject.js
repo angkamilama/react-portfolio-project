@@ -43,7 +43,7 @@ import React from 'react';
              number: 5
          }
      
-     ]
+     ];
 
     const [index, setIndex] = useState(0);
 
@@ -53,17 +53,17 @@ import React from 'react';
         <p class="project-description">${projects[index].description}</p>
         <p>project number ${index + 1} of ${projects.length}</p>` 
       };
-      React.useEffect(() => {
-        if (index > 1) {
-          console.log('Threshold of over 1 reached.');
-        } else {
-          console.log('No threshold reached.');
-        }
-      }, [index]);
-
-    const showNextProject =() => {
-        setIndex(index + 1);
-    }
+    
+    const showNextProject = (nextIndex) => {    
+        if (nextIndex <= 0) {
+          setIndex( projects.length - 1 ); 
+      } else if (nextIndex >= projects.length ){
+          setIndex(0);
+      } else {
+          setIndex(nextIndex);
+      }
+        displayProject();     
+    };
 
 
   
@@ -75,14 +75,27 @@ import React from 'react';
                 <h1></h1>
                 <section className="project">
                     <div className="btn-box">
-                        <button className="btn-prev" ><FaArrowLeft className="fa-solid fa-arrow-left"/>
+                        <button className="btn-prev" onClick={(e) => {
+                            e.preventDefault();
+                            showNextProject(index - 1);
+                        }} >
+                            <FaArrowLeft className="fa-solid fa-arrow-left"/>
                         </button>
                     </div>
-                    <div className="project-box" onClick={displayProject}>
+                    <div className="project-box" onClick={() => {
+                        displayProject();
+                        setIndex(index + 1);
+                    }}>
                         <p>Click here for to open projects!!!</p>
                     </div>
                     <div className="btn-box">
-                        <button className="btn-next" onClick={showNextProject}>                            <FaArrowRight className="fa-solid fa-arrow-right"/>
+                        <button className="btn-next" onClick={(e) => {
+                            console.log(index);
+                            e.preventDefault();
+                            showNextProject(index + 1);
+                            
+                        }
+}>                            <FaArrowRight className="fa-solid fa-arrow-right"/>
                         </button>
                     </div>
                 </section>    
